@@ -29,9 +29,15 @@ updated: 2026-11-08T00:28:00+05:30
 ## Phases
 
 ### Phase 1: `uv` Setup, Data Ingestion & Leak-Free Feature Engineering
-**Status:** ⬜ Not Started  
+**Status:** 🔄 Ready for Execution  
 **Objective:** Establish the hermetic `uv` environment, build cached `yfinance` ingestion with `Data/*.csv` fallback, compute log returns and technical indicators, and implement serialized leak-free scaling.  
 **Requirements:** REQ-01, REQ-02, REQ-03, REQ-04, REQ-05, NFR-01, CON-01, CON-02, CON-03  
+
+**Plans:**
+- [ ] Plan 1.1: `uv` project initialization, dependency locking, and resilient cached data ingestion with CSV fallback (`.gsd/phases/1/1-PLAN.md` - Wave 1)
+- [ ] Plan 1.2: Stationary log returns with price trajectory reconstruction and zero-lookahead technical indicator feature engine (`.gsd/phases/1/2-PLAN.md` - Wave 2)
+- [ ] Plan 1.3: Zero-leakage temporal data splitting, serialized scaler pipeline, and end-to-end data preparation CLI (`.gsd/phases/1/3-PLAN.md` - Wave 3)
+
 **Deliverables:**
 - `pyproject.toml` and `uv.lock`
 - `src/data/ingestion.py` (caching and historical fallback)
@@ -92,3 +98,4 @@ updated: 2026-11-08T00:28:00+05:30
 - `docker-compose.yml` (API and Dashboard service orchestration)
 - `Makefile` (Developer ergonomics for `uv run` commands)
 - `README.md` (Production documentation)
+
