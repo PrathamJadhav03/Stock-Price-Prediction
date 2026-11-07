@@ -18,6 +18,8 @@ htmlcov/
 
 # Local data cache & models
 data/raw/
+data/processed/
+Data/processed/
 models/checkpoints/
 *.joblib
 *.pkl
