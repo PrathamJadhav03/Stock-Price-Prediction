@@ -14,11 +14,11 @@ Traceable requirement catalog linking SPEC goals to engineering verification acr
 
 | ID | Requirement | Source | Phase | Status |
 |----|-------------|--------|-------|--------|
-| REQ-01 | Configure `pyproject.toml` and generate `uv.lock` with core and dev dependencies using `uv` | SPEC Goal 1 | 1 | Pending |
-| REQ-02 | Ingestion module downloading live `yfinance` daily bars with local disk caching in `data/raw/` and fallback to `Data/*.csv` | SPEC Goal 1 | 1 | Pending |
-| REQ-03 | Compute Log Returns $\ln(P_t / P_{t-1})$ as model target with trajectory inversion utility $\hat{P}_t = P_0 \exp(\sum \hat{r}_\tau)$ | SPEC Goal 1 | 1 | Pending |
-| REQ-04 | Feature engineering computing RSI, MACD, Bollinger Bands, ATR, SMA/EMA, and rolling volatility | SPEC Goal 1 | 1 | Pending |
-| REQ-05 | Zero-leakage temporal split and serialized scaling (`joblib` export of fitted `RobustScaler`/`StandardScaler`) | SPEC Goal 1 | 1 | Pending |
+| REQ-01 | Configure `pyproject.toml` and generate `uv.lock` with core and dev dependencies using `uv` | SPEC Goal 1 | 1 | Complete |
+| REQ-02 | Ingestion module downloading live `yfinance` daily bars with local disk caching in `data/raw/` and fallback to `Data/*.csv` | SPEC Goal 1 | 1 | Complete |
+| REQ-03 | Compute Log Returns $\ln(P_t / P_{t-1})$ as model target with trajectory inversion utility $\hat{P}_t = P_0 \exp(\sum \hat{r}_\tau)$ | SPEC Goal 1 | 1 | Complete |
+| REQ-04 | Feature engineering computing RSI, MACD, Bollinger Bands, ATR, SMA/EMA, and rolling volatility | SPEC Goal 1 | 1 | Complete |
+| REQ-05 | Zero-leakage temporal split and serialized scaling (`joblib` export of fitted `RobustScaler`/`StandardScaler`) | SPEC Goal 1 | 1 | Complete |
 | REQ-06 | PyTorch GRU architecture featuring LayerNorm, Dropout, and Monte Carlo (MC) Dropout inference for 95% confidence intervals | SPEC Goal 2 | 2 | Pending |
 | REQ-07 | Naive Persistence Baseline ($\hat{P}_t = P_{t-1}$) implementing uniform interface for statistical benchmarking | SPEC Goal 2 | 2 | Pending |
 | REQ-08 | Modular PyTorch trainer with EarlyStopping, ReduceLROnPlateau, gradient clipping, driven by `configs/config.yaml` | SPEC Goal 2 | 2 | Pending |

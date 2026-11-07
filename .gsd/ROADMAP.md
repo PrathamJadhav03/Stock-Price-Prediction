@@ -11,10 +11,10 @@ updated: 2026-11-08T00:28:00+05:30
 
 ## Must-Haves (from SPEC)
 
-- [ ] Exclusive `uv` environment and dependency management (`pyproject.toml`, `uv.lock`)
-- [ ] Ingestion with `yfinance` caching and `Data/*.csv` fallback
-- [ ] Log-returns modeling with exact price reconstruction
-- [ ] Leakage-free technical indicators and serialized `joblib` scalers
+- [x] Exclusive `uv` environment and dependency management (`pyproject.toml`, `uv.lock`)
+- [x] Ingestion with `yfinance` caching and `Data/*.csv` fallback
+- [x] Log-returns modeling with exact price reconstruction
+- [x] Leakage-free technical indicators and serialized `joblib` scalers
 - [ ] PyTorch GRU with LayerNorm, Dropout, and 95% MC Dropout uncertainty estimation
 - [ ] Naive Persistence Baseline ($\hat{P}_t = P_{t-1}$) comparison
 - [ ] Point forecast & directional accuracy metrics (Sign Hit Rate %)
@@ -29,14 +29,14 @@ updated: 2026-11-08T00:28:00+05:30
 ## Phases
 
 ### Phase 1: `uv` Setup, Data Ingestion & Leak-Free Feature Engineering
-**Status:** 🔄 Ready for Execution  
+**Status:** ✅ Complete  
 **Objective:** Establish the hermetic `uv` environment, build cached `yfinance` ingestion with `Data/*.csv` fallback, compute log returns and technical indicators, and implement serialized leak-free scaling.  
 **Requirements:** REQ-01, REQ-02, REQ-03, REQ-04, REQ-05, NFR-01, CON-01, CON-02, CON-03  
 
 **Plans:**
-- [ ] Plan 1.1: `uv` project initialization, dependency locking, and resilient cached data ingestion with CSV fallback (`.gsd/phases/1/1-PLAN.md` - Wave 1)
-- [ ] Plan 1.2: Stationary log returns with price trajectory reconstruction and zero-lookahead technical indicator feature engine (`.gsd/phases/1/2-PLAN.md` - Wave 2)
-- [ ] Plan 1.3: Zero-leakage temporal data splitting, serialized scaler pipeline, and end-to-end data preparation CLI (`.gsd/phases/1/3-PLAN.md` - Wave 3)
+- [x] Plan 1.1: `uv` project initialization, dependency locking, and resilient cached data ingestion with CSV fallback (`.gsd/phases/1/1-PLAN.md` - Wave 1)
+- [x] Plan 1.2: Stationary log returns with price trajectory reconstruction and zero-lookahead technical indicator feature engine (`.gsd/phases/1/2-PLAN.md` - Wave 2)
+- [x] Plan 1.3: Zero-leakage temporal data splitting, serialized scaler pipeline, and end-to-end data preparation CLI (`.gsd/phases/1/3-PLAN.md` - Wave 3)
 
 **Deliverables:**
 - `pyproject.toml` and `uv.lock`
