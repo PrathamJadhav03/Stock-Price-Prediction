@@ -10,6 +10,15 @@ from src.features.returns import (
     reconstruct_price_trajectory,
     reconstruct_prices_from_base,
 )
+from src.features.technical import (
+    compute_rsi,
+    compute_macd,
+    compute_bollinger_bands,
+    compute_atr,
+    compute_moving_averages,
+    compute_rolling_volatility,
+    add_all_technical_features,
+)
 
 
 def test_log_returns_invertibility_on_real_data():
@@ -62,3 +71,51 @@ def test_invalid_prices_raise_error():
 
     with pytest.raises(ValueError, match="strictly positive"):
         reconstruct_price_trajectory(-10.0, np.array([0.01, 0.02]))
+
+
+def test_technical_indicator_bounds():
+    """Verify mathematical bounds for RSI and Bollinger Bands."""
+    df = fetch_stock_data(symbol="AMZN", fallback_dir="Data")
+
+    rsi = compute_rsi(df["Close"], period=14).dropna()
+    assert (rsi >= 0.0).all() and (rsi <= 100.0).all(), "RSI must strictly remain in [0, 100]"
+
+    bb = compute_bollinger_bands(df["Close"], period=20).dropna()
+    assert (bb["bb_upper"] >= bb["bb_middle"]).all(), "Bollinger Upper must be >= Middle"
+    assert (bb["bb_middle"] >= bb["bb_lower"]).all(), "Bollinger Middle must be >= Lower"
+
+
+def test_zero_lookahead_leakage():
+    """Verify modifying future prices does NOT alter indicators computed at past timesteps."""
+    df1 = fetch_stock_data(symbol="IBM", fallback_dir="Data").iloc[:100].copy()
+    df2 = df1.copy()
+
+    # Modify prices in the future (from index 80 onwards)
+    df2.iloc[80:, df2.columns.get_loc("Close")] = df2.iloc[80:, df2.columns.get_loc("Close")] * 2.0
+    df2.iloc[80:, df2.columns.get_loc("High")] = df2.iloc[80:, df2.columns.get_loc("High")] * 2.0
+
+    feat1 = add_all_technical_features(df1, drop_burn_in=False)
+    feat2 = add_all_technical_features(df2, drop_burn_in=False)
+
+    # Features up to index 79 must be IDENTICAL
+    pd.testing.assert_frame_equal(
+        feat1.iloc[:80],
+        feat2.iloc[:80],
+        check_exact=True,
+    )
+
+
+def test_add_all_technical_features_zero_nans():
+    """Verify full feature extraction returns a clean DataFrame with zero NaNs."""
+    df = fetch_stock_data(symbol="GOOGL", fallback_dir="Data")
+    features = add_all_technical_features(df, drop_burn_in=True)
+
+    assert not features.empty
+    assert features.isna().sum().sum() == 0, "Enriched feature matrix must contain exactly 0 NaNs after burn-in drop"
+    assert "log_return" in features.columns
+    assert "rsi_14" in features.columns
+    assert "macd_hist" in features.columns
+    assert "bb_percent" in features.columns
+    assert "atr_14" in features.columns
+    assert "volatility_20" in features.columns
+    assert "sma_50" in features.columns
