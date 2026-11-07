@@ -50,4 +50,5 @@ dev = [
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 pythonpath = ["."]
+norecursedirs = [".venv", "data", "models", ".git", ".gsd"]
 addopts = "-v"

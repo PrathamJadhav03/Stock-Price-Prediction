@@ -7,6 +7,7 @@ from pathlib import Path
 from typing import Optional
 
 import pandas as pd
+import yfinance as yf
 
 logger = logging.getLogger(__name__)
 
@@ -110,8 +111,6 @@ def fetch_stock_data(
 
     # 2. Try yfinance download
     try:
-        import yfinance as yf
-
         logger.info("Attempting live yfinance download for %s (%s to %s)...", clean_sym, start_date, end_date)
         raw_yf = yf.download(clean_sym, start=start_date, end=end_date, progress=False, auto_adjust=False)
         if raw_yf is not None and not raw_yf.empty:
