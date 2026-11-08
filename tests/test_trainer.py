@@ -226,3 +226,52 @@ def test_trainer_fit_and_metrics(mock_trainer_config):
     assert metrics["rmse"] >= 0.0
     assert metrics["mae"] >= 0.0
     assert 0.0 <= metrics["directional_accuracy"] <= 100.0
+
+
+def test_train_pipeline_integration(tmp_path):
+    """Verify scripts/train.py train_pipeline runs end-to-end on real processed data."""
+    import math
+    from scripts.train import train_pipeline
+
+    output_dir = tmp_path / "models"
+    report = train_pipeline(
+        config_path="configs/config.yaml",
+        symbol="GOOGL",
+        epochs=2,
+        batch_size=64,
+        output_dir=str(output_dir),
+        data_dir="data/processed",
+        mc_samples=5,  # small sample count for fast unit test
+        device="cpu",
+        verbose=False,
+    )
+
+    # Check files created
+    checkpoint_file = output_dir / "gru_GOOGL.pt"
+    metrics_file = output_dir / "metrics_GOOGL.json"
+
+    assert checkpoint_file.exists()
+    assert checkpoint_file.stat().st_size > 0
+    assert metrics_file.exists()
+    assert metrics_file.stat().st_size > 0
+
+    # Check metrics structure and validity
+    assert "gru_point_metrics" in report
+    assert "gru_mc_metrics" in report
+    assert "baseline_metrics" in report
+    assert "comparison" in report
+
+    for k in ["rmse", "mae", "directional_accuracy"]:
+        val = report["gru_mc_metrics"][k]
+        assert isinstance(val, (int, float))
+        assert not math.isnan(val)
+        assert not math.isinf(val)
+
+        base_val = report["baseline_metrics"][k]
+        assert isinstance(base_val, (int, float))
+        assert not math.isnan(base_val)
+        assert not math.isinf(base_val)
+
+    assert 0.0 <= report["gru_mc_metrics"]["directional_accuracy"] <= 100.0
+    assert 0.0 <= report["gru_mc_metrics"]["coverage_95_pct"] <= 100.0
+
