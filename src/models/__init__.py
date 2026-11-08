@@ -1,4 +1,4 @@
-"""PyTorch models and training utilities for stock price forecasting."""
+"""PyTorch models, datasets, and baseline benchmarks for stock price forecasting."""
 
 from __future__ import annotations
 
@@ -10,20 +10,12 @@ import numpy as np
 import torch
 import yaml
 
+from src.models.dataset import StockSequenceDataset, create_dataloaders
+from src.models.baseline import NaivePersistenceBaseline
+
 
 def load_config(config_path: Union[str, Path] = "configs/config.yaml") -> Dict[str, Any]:
-    """Safely load and validate project YAML configuration.
-
-    Parameters
-    ----------
-    config_path : str or Path
-        Path to YAML configuration file.
-
-    Returns
-    -------
-    Dict[str, Any]
-        Parsed configuration dictionary.
-    """
+    """Safely load and validate project YAML configuration."""
     path = Path(config_path)
     if not path.exists():
         raise FileNotFoundError(f"Configuration file not found at: {path}")
@@ -69,4 +61,7 @@ __all__ = [
     "load_config",
     "set_seed",
     "resolve_device",
+    "StockSequenceDataset",
+    "create_dataloaders",
+    "NaivePersistenceBaseline",
 ]
