@@ -110,16 +110,20 @@ updated: 2026-11-08T00:28:00+05:30
 ---
 
 ### Phase 5: Testing, Multi-Stage Dockerization & Operational Tooling
-**Status:** 🔄 Ready for Planning  
+**Status:** 🔄 Ready for Execution  
 **Objective:** Deliver an end-to-end `pytest` verification suite run via `uv run pytest` covering feature leakage prevention, tensor dimensions, and API contracts; package the production application into an optimized multi-stage Docker container with `docker-compose.yml` and `Makefile`.  
 **Depends on:** Phase 4  
 **Requirements:** REQ-13, REQ-14, NFR-04, NFR-05  
+
+**Plans:**
+- [ ] Plan 5.1: Containerization & Operational Tooling (`.gsd/phases/5/1-PLAN.md` - Wave 1)
+- [ ] Plan 5.2: Production Documentation & Full Suite Verification (`.gsd/phases/5/2-PLAN.md` - Wave 2)
+
 **Deliverables:**
-- `tests/test_features.py` (leakage checks, return reconstruction)
-- `tests/test_models.py` (tensor shapes, MC Dropout reproducibility)
-- `tests/test_api.py` (FastAPI test client contract checks)
-- `Dockerfile` (`ghcr.io/astral-sh/uv` multi-stage build)
-- `docker-compose.yml` (API and Dashboard service orchestration)
-- `Makefile` (Developer ergonomics for `uv run` commands)
-- `README.md` (Production documentation)
+- `Dockerfile` (`ghcr.io/astral-sh/uv` multi-stage build with non-root security)
+- `.dockerignore` (Optimized build context exclusion)
+- `docker-compose.yml` (API and Dashboard service orchestration with healthchecks)
+- `Makefile` (Developer workflow targets wrapping `uv run`)
+- `README.md` (Enterprise production documentation with architecture diagrams and math)
+- `tests/test_ops.py` (Programmatic operational contract tests)
 
