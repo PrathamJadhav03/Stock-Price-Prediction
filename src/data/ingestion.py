@@ -64,7 +64,7 @@ def fetch_stock_data(
     start_date: str = "2006-01-01",
     end_date: str = "2018-01-01",
     cache_dir: str = "data/raw",
-    fallback_dir: str = "Data",
+    fallback_dir: str = "data/raw",
     force_refresh: bool = False,
 ) -> pd.DataFrame:
     """Fetch equity OHLCV data via cache, yfinance, or local repository fallback.

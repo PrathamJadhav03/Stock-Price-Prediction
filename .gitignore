@@ -16,17 +16,27 @@ __pycache__/
 .coverage
 htmlcov/
 
-# Local data cache & models
-data/raw/
-data/processed/
-Data/processed/
+# Local checkpoints & temporary model dumps
 models/checkpoints/
 *.joblib
 *.pkl
+!models/*.joblib
+
+# Local scratch & agent artifacts
+.gsd/
+.agent/
+.agents/
+.gemini/
+adapters/
+*.ipynb
+.python-version
+PROJECT_RULES.md
+GSD-STYLE.md
+model_capabilities.yaml
+VERSION
 
 # OS / IDE
 .DS_Store
 Thumbs.db
 .vscode/
 .idea/
-

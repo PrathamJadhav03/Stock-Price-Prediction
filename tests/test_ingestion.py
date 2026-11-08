@@ -30,12 +30,12 @@ def test_schema_normalization():
 
 
 def test_fallback_ingestion_when_offline(tmp_path):
-    """Verify offline fallback loads from Data/*.csv when network fails."""
+    """Verify offline fallback loads from data/raw/*.csv when network fails."""
     with patch("yfinance.download", side_effect=ConnectionError("Offline simulation")):
         df = fetch_stock_data(
             symbol="GOOGL",
             cache_dir=str(tmp_path / "cache"),
-            fallback_dir="Data",
+            fallback_dir="data/raw",
             force_refresh=True,
         )
         assert not df.empty
@@ -54,7 +54,7 @@ def test_caching_behavior(tmp_path):
         df1 = fetch_stock_data(
             symbol="MSFT",
             cache_dir=str(cache_dir),
-            fallback_dir="Data",
+            fallback_dir="data/raw",
         )
     cache_file = cache_dir / "MSFT.csv"
     assert cache_file.exists()
@@ -90,7 +90,7 @@ def test_live_download_caching(tmp_path):
             start_date="2020-01-01",
             end_date="2020-01-03",
             cache_dir=str(cache_dir),
-            fallback_dir="Data",
+            fallback_dir="data/raw",
         )
         assert len(df) == 2
         assert (cache_dir / "AAPL.csv").exists()

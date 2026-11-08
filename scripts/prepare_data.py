@@ -29,7 +29,7 @@ def run_pipeline(
     models_dir: str = "models",
     scaler_type: str = "robust",
     cache_dir: str = "data/raw",
-    fallback_dir: str = "Data",
+    fallback_dir: str = "data/raw",
 ) -> dict:
     """Execute end-to-end data ingestion, feature extraction, temporal split, and scaler serialization.
 
