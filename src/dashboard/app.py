@@ -2,9 +2,16 @@
 
 from __future__ import annotations
 
+import sys
+from pathlib import Path
+
+# Ensure project root is on sys.path for direct "streamlit run" invocations
+project_root = Path(__file__).resolve().parent.parent.parent
+if str(project_root) not in sys.path:
+    sys.path.insert(0, str(project_root))
+
 from datetime import datetime, timezone
 import math
-from pathlib import Path
 from typing import Any, Dict, List, Optional
 import numpy as np
 import pandas as pd
