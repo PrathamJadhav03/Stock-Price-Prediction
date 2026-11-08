@@ -1,5 +1,9 @@
 """Evaluation metrics and backtesting utilities for quantitative financial forecasting."""
 
+from src.evaluation.backtester import (
+    BacktestResult,
+    WalkForwardBacktester,
+)
 from src.evaluation.metrics import (
     calculate_annualized_return,
     calculate_annualized_volatility,
@@ -32,5 +36,6 @@ __all__ = [
     "calculate_profit_factor",
     "evaluate_forecasting_metrics",
     "evaluate_financial_metrics",
+    "BacktestResult",
+    "WalkForwardBacktester",
 ]
-
