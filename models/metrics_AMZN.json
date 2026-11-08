@@ -1,0 +1,114 @@
+{
+  "symbol": "AMZN",
+  "checkpoint_path": "models\\gru_AMZN.pt",
+  "gru_point_metrics": {
+    "rmse": 0.032517511868664424,
+    "mae": 0.029243174816109822,
+    "directional_accuracy": 44.230769230769226
+  },
+  "gru_mc_metrics": {
+    "rmse": 0.03249595238274196,
+    "mae": 0.02730009220432696,
+    "directional_accuracy": 45.67307692307692,
+    "mean_uncertainty_std": 0.10350862145423889,
+    "coverage_95_pct": 100.0
+  },
+  "baseline_metrics": {
+    "rmse": 0.012878966607420883,
+    "mae": 0.008775336698901216,
+    "directional_accuracy": 0.0
+  },
+  "comparison": {
+    "rmse_outperforms": false,
+    "mae_outperforms": false,
+    "directional_accuracy_outperforms": true
+  },
+  "config": {
+    "data": {
+      "symbol": "GOOGL",
+      "data_dir": "data/processed",
+      "models_dir": "models",
+      "target_col": "log_return",
+      "price_col": "Close",
+      "seq_length": 30,
+      "batch_size": 64,
+      "train_ratio": 0.7,
+      "val_ratio": 0.15,
+      "test_ratio": 0.15
+    },
+    "model": {
+      "input_dim": 23,
+      "hidden_dim": 64,
+      "num_layers": 2,
+      "dropout": 0.2,
+      "use_layer_norm": true,
+      "mc_samples": 50,
+      "confidence_level": 0.95
+    },
+    "training": {
+      "learning_rate": 0.001,
+      "weight_decay": 0.0001,
+      "max_epochs": 100,
+      "patience": 10,
+      "min_delta": 0.0001,
+      "lr_factor": 0.5,
+      "lr_patience": 5,
+      "max_grad_norm": 1.0,
+      "seed": 42,
+      "device": "auto"
+    }
+  },
+  "history": {
+    "train_loss": [
+      0.054557376250158995,
+      0.015078602242283523,
+      0.007731016419711523,
+      0.004987357438949402,
+      0.003221452352590859,
+      0.0022755040336051024,
+      0.0018796816111716907,
+      0.001602090535016032,
+      0.0013833105076628271,
+      0.0012728256788250292,
+      0.0011058185700676404,
+      0.0010880284135055263,
+      0.0009261476679967018,
+      0.0008597669475420844,
+      0.000902411229617428
+    ],
+    "val_loss": [
+      0.0029170157920037,
+      0.0022591211101306336,
+      0.000661232161551847,
+      0.0008361980726476759,
+      0.0003074576795500304,
+      0.000260345552565663,
+      0.0002740667779497536,
+      0.0005105865649446579,
+      0.000265632604298714,
+      0.0007170570731562163,
+      0.0004612578548923401,
+      0.00046803772316447327,
+      0.0003799514192256278,
+      0.0003054833068745211,
+      0.00025319383296716424
+    ],
+    "learning_rates": [
+      0.001,
+      0.001,
+      0.001,
+      0.001,
+      0.001,
+      0.001,
+      0.001,
+      0.001,
+      0.001,
+      0.001,
+      0.001,
+      0.001,
+      0.0005,
+      0.0005,
+      0.0005
+    ]
+  }
+}

@@ -1,0 +1,114 @@
+{
+  "symbol": "MSFT",
+  "checkpoint_path": "models\\gru_MSFT.pt",
+  "gru_point_metrics": {
+    "rmse": 0.033539009844180415,
+    "mae": 0.030437597630785043,
+    "directional_accuracy": 44.230769230769226
+  },
+  "gru_mc_metrics": {
+    "rmse": 0.03470672012705039,
+    "mae": 0.029842067280185347,
+    "directional_accuracy": 44.47115384615385,
+    "mean_uncertainty_std": 0.11321889609098434,
+    "coverage_95_pct": 100.0
+  },
+  "baseline_metrics": {
+    "rmse": 0.010415224802753907,
+    "mae": 0.007145790467732765,
+    "directional_accuracy": 0.0
+  },
+  "comparison": {
+    "rmse_outperforms": false,
+    "mae_outperforms": false,
+    "directional_accuracy_outperforms": true
+  },
+  "config": {
+    "data": {
+      "symbol": "GOOGL",
+      "data_dir": "data/processed",
+      "models_dir": "models",
+      "target_col": "log_return",
+      "price_col": "Close",
+      "seq_length": 30,
+      "batch_size": 64,
+      "train_ratio": 0.7,
+      "val_ratio": 0.15,
+      "test_ratio": 0.15
+    },
+    "model": {
+      "input_dim": 23,
+      "hidden_dim": 64,
+      "num_layers": 2,
+      "dropout": 0.2,
+      "use_layer_norm": true,
+      "mc_samples": 50,
+      "confidence_level": 0.95
+    },
+    "training": {
+      "learning_rate": 0.001,
+      "weight_decay": 0.0001,
+      "max_epochs": 100,
+      "patience": 10,
+      "min_delta": 0.0001,
+      "lr_factor": 0.5,
+      "lr_patience": 5,
+      "max_grad_norm": 1.0,
+      "seed": 42,
+      "device": "auto"
+    }
+  },
+  "history": {
+    "train_loss": [
+      0.0518980409251526,
+      0.015877061727223918,
+      0.007460710767190903,
+      0.004450614083907567,
+      0.002657988399732858,
+      0.0018657324962987332,
+      0.001486296398070408,
+      0.0012418939786584815,
+      0.001010860734822927,
+      0.0009000153604574734,
+      0.0007056703998387093,
+      0.0006841037957201479,
+      0.0006183145960676484,
+      0.000525509649378364,
+      0.0005297982852425775
+    ],
+    "val_loss": [
+      0.004701476943280015,
+      0.0030877975597312407,
+      0.0014508671967113124,
+      0.0004810398282383436,
+      0.00023884953407105058,
+      0.0008606106358846384,
+      0.0007369876548182219,
+      0.0005538410581980965,
+      0.000845231706210013,
+      0.00017563006050685153,
+      0.0002444743918853679,
+      0.00017836768737262382,
+      0.00016353238191056465,
+      0.00018028347403742373,
+      0.0005320475403485554
+    ],
+    "learning_rates": [
+      0.001,
+      0.001,
+      0.001,
+      0.001,
+      0.001,
+      0.001,
+      0.001,
+      0.001,
+      0.001,
+      0.001,
+      0.001,
+      0.001,
+      0.001,
+      0.001,
+      0.001
+    ]
+  }
+}
