@@ -58,5 +58,5 @@ docker-down:
 	$(DOCKER_COMPOSE) down
 
 clean:
-	$(PYTHON) -c "import shutil, pathlib; [shutil.rmtree(p, ignore_errors=True) for pattern in ['**/__pycache__', '**/.pytest_cache', '**/*.egg-info', 'build', 'dist', 'htmlcov'] for p in pathlib.Path('.').glob(pattern)]; [p.unlink() for pattern in ['**/*.py[cod]', '.coverage'] for p in pathlib.Path('.').glob(pattern) if p.is_file()]; print('Clean completed.')"
+	$(PYTHON) -c "import shutil, pathlib; [shutil.rmtree(p, ignore_errors=True) for pattern in ['**/__pycache__', '**/.pytest_cache', '**/*.egg-info', 'build', 'dist', 'htmlcov'] for p in pathlib.Path('.').glob(pattern) if '.venv' not in p.parts and '.git' not in p.parts]; [p.unlink() for pattern in ['**/*.pyc', '**/*.pyo', '.coverage'] for p in pathlib.Path('.').glob(pattern) if p.is_file() and '.venv' not in p.parts and '.git' not in p.parts]; print('Clean completed.')"
 
