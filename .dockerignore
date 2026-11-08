@@ -1,0 +1,42 @@
+# Version control
+.git
+.gitignore
+
+# Virtual environments & package managers
+.venv
+venv/
+env/
+*.egg-info/
+dist/
+build/
+
+# Python caches and bytecode
+__pycache__
+*.py[cod]
+*$py.class
+*.so
+
+# Testing & coverage artifacts
+.pytest_cache/
+.coverage
+htmlcov/
+reports/test*
+
+# GSD & agent execution artifacts
+.gsd
+.agents
+.gemini
+
+# Raw data and scratch directories
+data/raw/
+tmp/
+temp/
+
+# IDE and OS metadata
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
