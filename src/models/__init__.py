@@ -12,6 +12,7 @@ import yaml
 
 from src.models.dataset import StockSequenceDataset, create_dataloaders
 from src.models.baseline import NaivePersistenceBaseline
+from src.models.gru import StockGRU
 
 
 def load_config(config_path: Union[str, Path] = "configs/config.yaml") -> Dict[str, Any]:
@@ -64,4 +65,5 @@ __all__ = [
     "StockSequenceDataset",
     "create_dataloaders",
     "NaivePersistenceBaseline",
+    "StockGRU",
 ]
