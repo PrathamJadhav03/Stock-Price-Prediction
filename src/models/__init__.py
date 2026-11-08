@@ -13,6 +13,7 @@ import yaml
 from src.models.dataset import StockSequenceDataset, create_dataloaders
 from src.models.baseline import NaivePersistenceBaseline
 from src.models.gru import StockGRU
+from src.models.trainer import EarlyStopping, ModelTrainer, resolve_device
 
 
 def load_config(config_path: Union[str, Path] = "configs/config.yaml") -> Dict[str, Any]:
@@ -45,17 +46,6 @@ def set_seed(seed: int = 42) -> None:
         torch.backends.cudnn.benchmark = False
 
 
-def resolve_device(device_str: str = "auto") -> torch.device:
-    """Resolve target compute device (CUDA if available and requested, otherwise CPU)."""
-    dev = device_str.lower().strip()
-    if dev == "auto":
-        return torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    elif dev in ["cuda", "gpu"]:
-        if torch.cuda.is_available():
-            return torch.device("cuda")
-        return torch.device("cpu")
-    else:
-        return torch.device("cpu")
 
 
 __all__ = [
@@ -66,4 +56,6 @@ __all__ = [
     "create_dataloaders",
     "NaivePersistenceBaseline",
     "StockGRU",
+    "EarlyStopping",
+    "ModelTrainer",
 ]
