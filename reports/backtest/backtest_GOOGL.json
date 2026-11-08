@@ -7,7 +7,7 @@
   "split": "test",
   "mc_samples": 50,
   "model_path": "models\\gru_GOOGL.pt",
-  "config_path": "configs/config.yaml",
+  "config_path": "configs\\config.yaml",
   "summary": {
     "strategy_cumulative_return": -0.016819572242821157,
     "strategy_annualized_return": -0.010222825921202938,
