@@ -29,3 +29,4 @@ Implemented the production-ready, configuration-driven PyTorch training engine s
 - `uv run pytest tests/ -v`: 32 passed in 9.82s.
 - `uv run python scripts/train.py --symbol GOOGL --epochs 25`: Early stopping successfully fired at epoch 15, saved `models/gru_GOOGL.pt` (174 KB) and `models/metrics_GOOGL.json`.
 - Benchmark scorecard confirmed: Directional Accuracy `46.88%` vs Baseline `0.00%` (YES), 95% CI Coverage `100.00%` (VALID).
+

@@ -71,11 +71,23 @@ updated: 2026-11-08T00:28:00+05:30
 ---
 
 ### Phase 3: Quantitative Evaluation & Financial Backtesting
-**Status:** 🔄 Ready for Planning  
+**Status:** 🔄 Ready for Execution  
 **Objective:** Implement standard forecasting error metrics along with directional accuracy (Sign Hit Rate %); construct a Walk-Forward backtesting engine simulating a long/flat strategy with basis point transaction costs, Sharpe Ratio, and Max Drawdown against Buy-and-Hold.  
 **Depends on:** Phase 2  
 **Requirements:** REQ-09, REQ-10  
+
+**Plans:**
+- [ ] Plan 3.1: Forecasting & Financial Performance Metrics Engine (`.gsd/phases/3/1-PLAN.md` - Wave 1)
+- [ ] Plan 3.2: Event-Driven Walk-Forward Backtester with Transaction Cost Modeling (`.gsd/phases/3/2-PLAN.md` - Wave 2)
+- [ ] Plan 3.3: Backtesting CLI Runner, Artifact Serialization & Scorecard Generation (`.gsd/phases/3/3-PLAN.md` - Wave 3)
+
 **Deliverables:**
+- `src/evaluation/metrics.py` (Forecasting and financial portfolio metrics)
+- `src/evaluation/backtester.py` (Walk-forward simulator and BacktestResult)
+- `src/evaluation/__init__.py` (Evaluation exports)
+- `scripts/backtest.py` (Walk-forward backtest CLI runner)
+- `reports/backtest/backtest_{symbol}.json` (Serialized KPIs)
+- `reports/backtest/equity_curve_{symbol}.csv` (Time-series equity trajectories)
 - `src/evaluation/metrics.py` (RMSE, MAE, MAPE, Sign Hit Rate %)
 - `src/evaluation/backtester.py` (Walk-forward strategy simulation, transaction costs, equity curves)
 - `src/evaluation/report.py` (Comparative evaluation vs baseline and Buy-and-Hold)
