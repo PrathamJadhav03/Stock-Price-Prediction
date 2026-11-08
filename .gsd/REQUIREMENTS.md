@@ -24,8 +24,8 @@ Traceable requirement catalog linking SPEC goals to engineering verification acr
 | REQ-08 | Modular PyTorch trainer with EarlyStopping, ReduceLROnPlateau, gradient clipping, driven by `configs/config.yaml` | SPEC Goal 2 | 2 | Complete |
 | REQ-09 | Metric calculation module for RMSE, MAE, MAPE, and Directional Accuracy (Sign Hit Rate %) | SPEC Goal 3 | 3 | Complete |
 | REQ-10 | Walk-Forward financial backtester simulating long/flat strategy with basis point transaction costs, Sharpe, and Max Drawdown | SPEC Goal 3 | 3 | Complete |
-| REQ-11 | FastAPI application exposing `/health`, `/predict` (predictions + 95% CI), and `/backtest` endpoints with Pydantic schemas | SPEC Goal 4 | 4 | Pending |
-| REQ-12 | Interactive Streamlit dashboard porting Plotly candlestick, indicator overlays, forecast fan charts, and strategy equity curves | SPEC Goal 4 | 4 | Pending |
+| REQ-11 | FastAPI application exposing `/health`, `/predict` (predictions + 95% CI), and `/backtest` endpoints with Pydantic schemas | SPEC Goal 4 | 4 | Complete |
+| REQ-12 | Interactive Streamlit dashboard porting Plotly candlestick, indicator overlays, forecast fan charts, and strategy equity curves | SPEC Goal 4 | 4 | Complete |
 | REQ-13 | Automated test suite verifying leakage prevention, tensor dimensions, and API contracts executed via `uv run pytest` | SPEC Goal 5 | 5 | Pending |
 | REQ-14 | Multi-stage `Dockerfile` (`ghcr.io/astral-sh/uv`), `docker-compose.yml`, and `Makefile` wrapping `uv run` commands | SPEC Goal 5 | 5 | Pending |
 
@@ -37,7 +37,7 @@ Traceable requirement catalog linking SPEC goals to engineering verification acr
 |----|-------------|----------|-------|--------|
 | NFR-01 | Strict `uv` execution across all scripts, tests, servers, and tooling | Tooling / Env | All | Pending |
 | NFR-02 | Device-agnostic PyTorch execution (CUDA enabled if available, fallback CPU) | Performance | 2 | Complete |
-| NFR-03 | Model inference latency $< 100\text{ ms}$ for 50-step MC Dropout simulation | Performance | 4 | Pending |
+| NFR-03 | Model inference latency $< 100\text{ ms}$ for 50-step MC Dropout simulation | Performance | 4 | Complete |
 | NFR-04 | Modular package structure in `src/` following standard Python packaging guidelines | Maintainability | 1-5 | Pending |
 | NFR-05 | 100% test pass rate for automated test suite | Reliability | 5 | Pending |
 

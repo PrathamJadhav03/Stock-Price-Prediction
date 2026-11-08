@@ -92,14 +92,14 @@ updated: 2026-11-08T00:28:00+05:30
 ---
 
 ### Phase 4: FastAPI Serving & Interactive Streamlit Dashboard
-**Status:** 🟡 In Progress  
+**Status:** ✅ Complete  
 **Objective:** Expose the model through high-performance REST API endpoints (`/health`, `/predict`, `/backtest`), and provide a rich Streamlit analytics dashboard porting and upgrading Plotly visualizations with candlestick charts, uncertainty fan charts, and backtest scorecards.  
 **Depends on:** Phase 3  
 **Requirements:** REQ-11, REQ-12, NFR-03  
 
 **Plans:**
-- [ ] Plan 4.1: FastAPI REST Serving Engine (`.gsd/phases/4/1-PLAN.md` - Wave 1)
-- [ ] Plan 4.2: Plotly Analytics Components & Interactive Streamlit Dashboard (`.gsd/phases/4/2-PLAN.md` - Wave 2)
+- [x] Plan 4.1: FastAPI REST Serving Engine (`.gsd/phases/4/1-PLAN.md` - Wave 1)
+- [x] Plan 4.2: Plotly Analytics Components & Interactive Streamlit Dashboard (`.gsd/phases/4/2-PLAN.md` - Wave 2)
 
 **Deliverables:**
 - `src/api/__init__.py`, `src/api/schemas.py`, `src/api/service.py`, `src/api/app.py`
@@ -110,7 +110,7 @@ updated: 2026-11-08T00:28:00+05:30
 ---
 
 ### Phase 5: Testing, Multi-Stage Dockerization & Operational Tooling
-**Status:** ⬜ Not Started  
+**Status:** 🔄 Ready for Planning  
 **Objective:** Deliver an end-to-end `pytest` verification suite run via `uv run pytest` covering feature leakage prevention, tensor dimensions, and API contracts; package the production application into an optimized multi-stage Docker container with `docker-compose.yml` and `Makefile`.  
 **Depends on:** Phase 4  
 **Requirements:** REQ-13, REQ-14, NFR-04, NFR-05  
