@@ -48,10 +48,16 @@ updated: 2026-11-08T00:28:00+05:30
 ---
 
 ### Phase 2: PyTorch GRU Architecture & Baseline Engine
-**Status:** ⬜ Not Started  
+**Status:** 🔄 Ready for Execution  
 **Objective:** Modularize the PyTorch GRU architecture with LayerNorm, Dropout, and Monte Carlo Dropout for uncertainty estimation; implement the naive persistence baseline and a config-driven PyTorch trainer with early stopping.  
 **Depends on:** Phase 1  
 **Requirements:** REQ-06, REQ-07, REQ-08, NFR-02  
+
+**Plans:**
+- [ ] Plan 2.1: Configuration schema, sliding window sequence dataset, and Naive Persistence Baseline (`.gsd/phases/2/1-PLAN.md` - Wave 1)
+- [ ] Plan 2.2: PyTorch StockGRU architecture with LayerNorm, Dropout, and Monte Carlo Dropout 95% confidence intervals (`.gsd/phases/2/2-PLAN.md` - Wave 2)
+- [ ] Plan 2.3: Config-driven PyTorch trainer with EarlyStopping, gradient clipping, checkpoint persistence, and baseline comparison (`.gsd/phases/2/3-PLAN.md` - Wave 3)
+
 **Deliverables:**
 - `configs/config.yaml`
 - `src/models/gru.py` (GRU with LayerNorm and MC Dropout)
