@@ -8,25 +8,27 @@ updated: 2026-11-08T15:18:00+05:30
 
 **Milestone:** v1.0 Production ML System  
 **Phase:** 4 - FastAPI Serving & Interactive Streamlit Dashboard  
-**Status:** ready_for_planning  
-**Plan:** Ready to plan Phase 4 (`/plan 4`)  
+**Status:** in_progress  
+**Plan:** Ready to execute Phase 4 Wave 1 (`.gsd/phases/4/1-PLAN.md`)  
 
 ## Last Action
 
-Completed Phase 3 execution and verification:
-- Plan 3.1: Forecasting & Financial Performance Metrics Engine (`src/evaluation/metrics.py`, `tests/test_metrics.py`).
-- Plan 3.2: Event-Driven Walk-Forward Backtester with Transaction Cost Modeling (`src/evaluation/backtester.py`, `tests/test_backtester.py`).
-- Plan 3.3: Backtesting CLI Runner, Artifact Serialization & Scorecard Generation (`scripts/backtest.py`, `tests/test_backtest_cli.py`).
-- Verified all 68 tests passing via `uv run pytest tests/ -v`.
-- Formulated `.gsd/phases/3/VERIFICATION.md` with PASS verdict.
+Completed Phase 4 planning and plan validation:
+- Plan 4.1 (Wave 1): FastAPI REST Serving Engine (`src/api/__init__.py`, `src/api/schemas.py`, `src/api/service.py`, `src/api/app.py`, `tests/test_api.py`)
+- Plan 4.2 (Wave 2): Plotly Analytics Components & Interactive Streamlit Dashboard (`src/dashboard/__init__.py`, `src/dashboard/components.py`, `src/dashboard/app.py`, `tests/test_dashboard.py`)
+- Validated both plans against all 7 dimensions of plan-checker (PASS).
 
 ## Next Steps
 
-1. Run `/plan 4` to decompose Phase 4 (FastAPI Serving & Streamlit Dashboard) into atomic wave plans:
-   - FastAPI REST API exposing `/health`, `/predict` (predictions + 95% CI), and `/backtest` with strict Pydantic schemas.
-   - Streamlit interactive dashboard porting Plotly candlestick, indicator overlays, forecast fan charts, and strategy equity curves.
-2. Execute Phase 4 plans with atomic commits.
-3. Validate API endpoints and UI components.
+1. Execute Plan 4.1 (FastAPI REST Serving Engine):
+   - Implement schemas and in-memory ModelService.
+   - Construct FastAPI app with lifespan caching and endpoints.
+   - Verify contract tests via `uv run pytest tests/test_api.py`.
+2. Execute Plan 4.2 (Streamlit Dashboard & Plotly Components):
+   - Implement Plotly visualization components and unit tests.
+   - Build Streamlit application with multi-tab layout and sidebar controls.
+   - Verify dashboard execution via `uv run pytest`.
+3. Verify Phase 4 endpoints and dashboard against REQ-11, REQ-12, and NFR-03.
 
 ## Active Decisions
 

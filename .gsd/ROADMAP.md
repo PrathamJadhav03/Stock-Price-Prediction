@@ -92,14 +92,20 @@ updated: 2026-11-08T00:28:00+05:30
 ---
 
 ### Phase 4: FastAPI Serving & Interactive Streamlit Dashboard
-**Status:** 🔄 Ready for Planning  
+**Status:** 🟡 In Progress  
 **Objective:** Expose the model through high-performance REST API endpoints (`/health`, `/predict`, `/backtest`), and provide a rich Streamlit analytics dashboard porting and upgrading Plotly visualizations with candlestick charts, uncertainty fan charts, and backtest scorecards.  
 **Depends on:** Phase 3  
 **Requirements:** REQ-11, REQ-12, NFR-03  
+
+**Plans:**
+- [ ] Plan 4.1: FastAPI REST Serving Engine (`.gsd/phases/4/1-PLAN.md` - Wave 1)
+- [ ] Plan 4.2: Plotly Analytics Components & Interactive Streamlit Dashboard (`.gsd/phases/4/2-PLAN.md` - Wave 2)
+
 **Deliverables:**
-- `src/api/app.py`, `src/api/schemas.py`, `src/api/routes.py`
-- `src/dashboard/app.py`
-- `src/dashboard/components.py` (Candlestick + technical overlays, MC Dropout fan charts, performance curves)
+- `src/api/__init__.py`, `src/api/schemas.py`, `src/api/service.py`, `src/api/app.py`
+- `tests/test_api.py`
+- `src/dashboard/__init__.py`, `src/dashboard/components.py`, `src/dashboard/app.py`
+- `tests/test_dashboard.py`
 
 ---
 

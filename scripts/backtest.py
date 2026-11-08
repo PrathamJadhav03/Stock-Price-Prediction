@@ -421,7 +421,7 @@ def main() -> None:
         "--bps",
         type=float,
         default=10.0,
-        help="Transaction fee in basis points (default: 10.0 bps = 0.0010 fee rate).",
+        help="Transaction fee in basis points (default: 10.0 = 0.1%%).",
     )
     parser.add_argument(
         "--threshold",
