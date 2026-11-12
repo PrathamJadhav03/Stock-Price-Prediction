@@ -188,18 +188,21 @@ def test_format_kpi_cards() -> None:
         "buy_and_hold_sharpe_ratio": 0.750,
         "strategy_sortino_ratio": 2.450,
         "buy_and_hold_sortino_ratio": 0.980,
-        "strategy_max_drawdown": 0.085,
-        "buy_and_hold_max_drawdown": 0.155,
-        "strategy_win_rate": 0.562,
-        "buy_and_hold_win_rate": 0.510,
+        "strategy_max_drawdown": 8.5,
+        "buy_and_hold_max_drawdown": 15.5,
+        "strategy_win_rate": 56.2,
+        "buy_and_hold_win_rate": 51.0,
         "strategy_profit_factor": 1.48,
         "buy_and_hold_profit_factor": 1.12,
-        "directional_accuracy": 0.578,
+        "directional_accuracy": 57.8,
+        "total_trades": 42,
+        "final_strategy_equity": 12850.0,
+        "final_buy_and_hold_equity": 11500.0,
         "total_transaction_costs": 142.50,
     }
 
     cards = format_kpi_cards(summary)
-    assert len(cards) >= 9
+    assert len(cards) == 12
 
     labels = [c["label"] for c in cards]
     assert "Cumulative Return" in labels
@@ -209,6 +212,8 @@ def test_format_kpi_cards() -> None:
     assert "Win Rate" in labels
     assert "Profit Factor" in labels
     assert "Total Transaction Fees" in labels
+    assert "Executed Trades" in labels
+    assert "Final Portfolio Equity" in labels
 
     # Validate Cumulative Return card content
     cum_card = [c for c in cards if c["label"] == "Cumulative Return"][0]
@@ -216,6 +221,20 @@ def test_format_kpi_cards() -> None:
     assert cum_card["benchmark"] == "+15.00%"
     assert cum_card["delta"] == "+13.50%"
     assert cum_card["is_positive"] is True
+
+    # Validate percentage-native metrics are NOT multiplied by 100 twice
+    dd_card = [c for c in cards if c["label"] == "Maximum Drawdown"][0]
+    assert dd_card["strategy"] == "8.50%"
+    assert dd_card["delta_color"] == "inverse"
+
+    win_card = [c for c in cards if c["label"] == "Win Rate"][0]
+    assert win_card["strategy"] == "56.20%"
+
+    dir_card = [c for c in cards if c["label"] == "Directional Accuracy"][0]
+    assert dir_card["strategy"] == "57.80%"
+
+    fee_card = [c for c in cards if c["label"] == "Total Transaction Fees"][0]
+    assert fee_card["delta_color"] == "inverse"
 
 
 def test_format_kpi_cards_missing_and_zero_division() -> None:
@@ -261,12 +280,16 @@ def test_backend_client_local_fallback() -> None:
 
 
 def test_load_ticker_data() -> None:
-    """Verify load_ticker_data returns unified DataFrame with correct columns and DatetimeIndex."""
+    """Verify load_ticker_data returns unscaled market OHLCV and technical indicators."""
     from src.dashboard.app import load_ticker_data
 
     df = load_ticker_data("GOOGL")
     assert not df.empty
     assert isinstance(df.index, pd.DatetimeIndex)
-    for col in ["Close", "Open", "High", "Low", "Volume"]:
+    for col in ["Close", "Open", "High", "Low", "Volume", "rsi_14", "volatility_20", "atr_14"]:
         assert col in df.columns
+    assert (df["Volume"] >= 0).all()
+    assert (df["High"] >= df["Low"]).all()
+    assert (df["rsi_14"] >= 0.0).all() and (df["rsi_14"] <= 100.0).all()
+    assert (df["volatility_20"] >= 0.0).all()
 
